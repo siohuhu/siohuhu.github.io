@@ -175,31 +175,34 @@ footer {
     aspect-ratio: 16 / 7; border-radius: 20px;
   }
 
-  /* PC title：放在 logo 上方，稍大 */
+  /* PC title：左下角，縮小 */
   .hero-title {
-    bottom: 72px; left: 36px;
+    bottom: 20px; left: 36px;
     letter-spacing: 0.22em;
   }
   .hero-title .t1,
-  .hero-title .t2 { font-size: clamp(1.6rem, 3.2vw, 2.6rem); }
+  .hero-title .t2 { font-size: clamp(1.1rem, 1.8vw, 1.6rem); }
 
-  /* mobile logo bar 隱藏 */
-  .logo-bar { display: none; }
+  /* PC：logo-pc 隱藏（不用了） */
+  .hero-logo-pc { display: none; }
 
-  /* PC logo：hero 左下 */
-  .hero-logo-pc {
-    display: inline-flex;
-    position: absolute;
-    bottom: 18px; left: 36px;
-    z-index: 20;
+  /* PC logo bar：hero 下方左側，真實圖片 */
+  .logo-bar {
+    display: flex;
+    max-width: 1000px;
+    padding: 14px 0 0;
+    justify-content: flex-start;
   }
-  .hero-logo-pc .logo-svg { width: 52px; height: 34px; }
-  .hero-logo-pc .logo-text .lt1 {
-    color: rgba(253,252,249,0.80); font-size: 1rem;
+  .logo-bar a { display: block; }
+  .logo-bar img {
+    height: 44px; width: auto;
+    display: block;
+    mix-blend-mode: multiply;
   }
-  .hero-logo-pc .logo-text .lt2 {
-    color: rgba(253,252,249,0.55); font-size: 0.52rem;
-  }
+  /* PC：隱藏 SVG logo，顯示真實圖片 */
+  .logo-bar .logo-svg,
+  .logo-bar .logo-text { display: none; }
+  .logo-bar .logo-img { display: block; }
 
   .works {
     max-width: 1000px;
@@ -263,9 +266,12 @@ footer {
     </a>
   </section>
 
-  <!-- MOBILE only：logo bar -->
+  <!-- MOBILE only：logo bar（SVG）/ PC：真實圖片 -->
   <div class="logo-bar">
     <a href="/" aria-label="Siohuhu Studio">
+      <!-- PC 用真實圖片 -->
+      <img class="logo-img" src="siohuhu_logo_02.png" alt="Siohuhu Studio" style="display:none;">
+      <!-- Mobile 用 SVG -->
       <svg class="logo-svg" viewBox="0 0 80 52" xmlns="http://www.w3.org/2000/svg">
         <circle cx="26" cy="26" r="24" fill="#c8d44e"/>
         <circle cx="52" cy="26" r="24" fill="#5bbccc"/>
