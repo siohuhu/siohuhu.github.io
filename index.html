@@ -10,9 +10,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:    #fdfcf9;
-  --text:  #2a2825;
-  --muted: #9a9590;
+  --bg:     #fdfcf9;
+  --text:   #2a2825;
+  --muted:  #9a9590;
   --border: rgba(42,40,37,0.10);
 }
 
@@ -23,27 +23,25 @@ html, body {
   min-height: 100svh;
 }
 
-/* ════════════════════════════
+/* ══════════════════════════════
    MOBILE  (< 720px)
-   參考 siohuhu_home_mobile.png
-   圖片有上下留白，非全滿
-════════════════════════════ */
-
+   參考 01.PNG
+══════════════════════════════ */
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 28px 20px 0;
+  padding: 24px 16px 0;
   background: var(--bg);
 }
 
-/* HERO — 圓角卡片，非全滿 */
+/* HERO 卡片 */
 .hero {
   position: relative;
   width: 100%;
   max-width: 420px;
   aspect-ratio: 3 / 4;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   background: #9e9894;
   flex-shrink: 0;
@@ -64,58 +62,61 @@ body {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    transparent 40%,
-    rgba(18,16,14,0.55) 100%
+    transparent 35%,
+    rgba(18,16,14,0.60) 100%
   );
   pointer-events: none;
 }
 
-/* 右上 logo */
-.hero-logo {
+/* 左下：SIOHUHU STUDIO 小字 */
+.hero-title {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  bottom: 18px;
+  left: 18px;
   z-index: 20;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
+  color: rgba(253,252,249,0.70);
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.18;
+  pointer-events: none;
+}
+.hero-title .t1,
+.hero-title .t2 {
+  /* 縮小：參考 01.PNG 紅框，約原稿1/3高度 */
+  font-size: clamp(1rem, 4.5vw, 1.4rem);
+}
+
+/* hero 上不放 logo，logo 移到下方 */
+
+/* LOGO 區塊（hero 下方） */
+.logo-bar {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  padding: 16px 4px 0;
+}
+.logo-bar a {
   display: block;
   text-decoration: none;
   transition: opacity 0.25s;
 }
-.hero-logo:hover { opacity: 0.80; }
-/* logo 圖是黑底，雙圓圈在中間，用 scale + translate 裁出來 */
-.hero-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 38%;
-  transform: scale(1.35);
+.logo-bar a:hover { opacity: 0.75; }
+.logo-bar img {
+  height: 40px;
+  width: auto;
+  display: block;
+  /* siohuhu_logo_02.png 是橫式黑底，裁掉黑底顯示 */
+  mix-blend-mode: multiply;
 }
 
-/* 左下大字 */
-.hero-title {
-  position: absolute;
-  bottom: 22px;
-  left: 20px;
-  z-index: 20;
-  color: rgba(253,252,249,0.72);
-  font-family: 'Georgia', serif;
-  font-weight: 400;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  line-height: 1.16;
-  pointer-events: none;
-}
-.hero-title .t1,
-.hero-title .t2 { font-size: clamp(1.8rem, 8vw, 2.6rem); }
-
-/* WORKS — 全寬條狀 */
+/* WORKS */
 .works {
   width: 100%;
   max-width: 420px;
-  margin-top: 20px;
+  margin-top: 14px;
 }
 
 .work-item {
@@ -124,24 +125,24 @@ body {
   overflow: hidden;
   text-decoration: none;
   border-radius: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .work-item .work-bg {
   width: 100%;
-  height: 110px;
+  height: 100px;
   object-fit: cover;
   object-position: center 40%;
   display: block;
-  filter: brightness(0.75) saturate(0.88);
+  filter: brightness(0.72) saturate(0.88);
   transition: filter 0.4s, transform 0.4s;
 }
 .work-item:hover .work-bg {
-  filter: brightness(0.60) saturate(0.80);
+  filter: brightness(0.58) saturate(0.80);
   transform: scale(1.04);
 }
 
-/* ★ work label 字放大 2.5x，原 1rem → 2.5rem */
+/* sea of mirrors 字：縮回正常，參考 01.PNG 紅框 */
 .work-item .work-label {
   position: absolute;
   inset: 0;
@@ -150,8 +151,8 @@ body {
   justify-content: center;
   font-family: 'Georgia', serif;
   font-weight: 400;
-  font-size: 2.5rem;
-  letter-spacing: 0.18em;
+  font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+  letter-spacing: 0.20em;
   color: rgba(253,252,249,0.88);
   text-transform: lowercase;
 }
@@ -160,19 +161,19 @@ body {
 .contact {
   width: 100%;
   max-width: 420px;
-  padding: 2rem 0 1.4rem;
+  padding: 1.8rem 0 1.2rem;
   text-align: center;
   border-top: 0.5px solid var(--border);
-  margin-top: 8px;
+  margin-top: 4px;
 }
 .contact .c-label {
-  font-size: 0.80rem;
+  font-size: 0.78rem;
   letter-spacing: 0.18em;
   color: var(--text);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.3rem;
 }
 .contact a {
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   letter-spacing: 0.08em;
   color: var(--muted);
   text-decoration: none;
@@ -185,95 +186,111 @@ body {
 footer {
   width: 100%;
   max-width: 420px;
-  padding: 1rem 0 2.4rem;
+  padding: 0.9rem 0 2.4rem;
   text-align: center;
-  font-size: 0.56rem;
+  font-size: 0.54rem;
   letter-spacing: 0.10em;
   color: var(--muted);
   border-top: 0.5px solid var(--border);
 }
 
-/* ════════════════════════════
+/* ══════════════════════════════
    PC  (≥ 720px)
-   參考 im01.png：
-   hero 左右留白，置中，非全滿
-════════════════════════════ */
+   參考 02.PNG：
+   hero 更大，logo 左下，字小
+══════════════════════════════ */
 @media (min-width: 720px) {
   body {
-    padding: 48px 40px 0;
+    padding: 40px 40px 0;
     background: #edeae4;
-    align-items: center;
   }
 
   .hero {
-    max-width: 860px;
+    max-width: 1000px;
     width: 100%;
     aspect-ratio: 16 / 7;
     border-radius: 20px;
   }
 
-  .hero-logo {
-    width: 64px;
-    height: 64px;
-    top: 18px;
-    right: 18px;
-  }
+  /* PC：logo 移入 hero 左下角 */
+  .hero { position: relative; }
 
   .hero-title {
-    bottom: 32px;
-    left: 40px;
-    letter-spacing: 0.24em;
+    /* 縮小，貼近左下 */
+    bottom: 80px;
+    left: 36px;
+    letter-spacing: 0.22em;
   }
   .hero-title .t1,
-  .hero-title .t2 { font-size: clamp(2.8rem, 5vw, 5rem); }
+  .hero-title .t2 {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+  }
+
+  /* PC logo 放進 hero 左下，logo-bar 隱藏 */
+  .logo-bar { display: none; }
+
+  .hero-logo-pc {
+    position: absolute;
+    bottom: 20px;
+    left: 36px;
+    z-index: 20;
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.25s;
+  }
+  .hero-logo-pc:hover { opacity: 0.75; }
+  .hero-logo-pc img {
+    height: 36px;
+    width: auto;
+    display: block;
+    mix-blend-mode: screen;
+    filter: brightness(1.2);
+  }
 
   .works {
-    max-width: 860px;
+    max-width: 1000px;
     display: flex;
-    gap: 16px;
-    margin-top: 24px;
+    gap: 14px;
+    margin-top: 20px;
     flex-wrap: wrap;
   }
 
   .work-item {
     flex: 1;
-    min-width: 280px;
+    min-width: 260px;
     margin-bottom: 0;
     border-radius: 14px;
   }
 
-  .work-item .work-bg { height: 160px; }
+  .work-item .work-bg { height: 150px; }
+  .work-item .work-label { font-size: clamp(0.85rem, 1.8vw, 1.1rem); }
 
-  .work-item .work-label { font-size: 2.5rem; }
-
-  .contact {
-    max-width: 860px;
-    padding: 2.2rem 0 1.6rem;
-  }
-
-  footer { max-width: 860px; }
+  .contact { max-width: 1000px; padding: 2rem 0 1.4rem; }
+  footer { max-width: 1000px; }
 }
 
 /* 2K (≥ 1800px) */
 @media (min-width: 1800px) {
-  body { padding: 64px 60px 0; }
+  body { padding: 56px 60px 0; }
 
   .hero {
-    max-width: 1400px;
+    max-width: 1500px;
     aspect-ratio: 16 / 6;
   }
 
-  .hero-logo { width: 80px; height: 80px; top: 24px; right: 24px; }
-
+  .hero-title { bottom: 100px; left: 56px; }
   .hero-title .t1,
-  .hero-title .t2 { font-size: clamp(4rem, 5vw, 7rem); }
+  .hero-title .t2 { font-size: clamp(2rem, 2.8vw, 3.2rem); }
 
-  .works { max-width: 1400px; gap: 24px; }
-  .work-item .work-bg { height: 220px; }
-  .work-item .work-label { font-size: 3rem; }
+  .hero-logo-pc { bottom: 28px; left: 56px; }
+  .hero-logo-pc img { height: 48px; }
 
-  .contact { max-width: 1400px; }
-  footer { max-width: 1400px; font-size: 0.65rem; }
+  .works { max-width: 1500px; gap: 20px; }
+  .work-item .work-bg { height: 200px; }
+  .work-item .work-label { font-size: clamp(1rem, 1.4vw, 1.3rem); }
+
+  .contact { max-width: 1500px; }
+  footer { max-width: 1500px; font-size: 0.62rem; }
 }
 </style>
 </head>
@@ -282,14 +299,25 @@ footer {
   <!-- HERO -->
   <section class="hero">
     <img class="hero-img" src="siohuhustudio_home.png" alt="Siohuhu Studio">
-    <a class="hero-logo" href="/" aria-label="Siohuhu Studio">
-      <img src="siohuhu_logo.png" alt="Siohuhu Studio logo">
-    </a>
+
+    <!-- SIOHUHU STUDIO 小字，左下 -->
     <div class="hero-title" aria-hidden="true">
       <div class="t1">SIOHUHU</div>
       <div class="t2">STUDIO</div>
     </div>
+
+    <!-- PC only：logo 左下（hero 內） -->
+    <a class="hero-logo-pc" href="/" aria-label="Siohuhu Studio">
+      <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+    </a>
   </section>
+
+  <!-- MOBILE only：logo 在 hero 下方 -->
+  <div class="logo-bar">
+    <a href="/" aria-label="Siohuhu Studio">
+      <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+    </a>
+  </div>
 
   <!-- WORKS -->
   <div class="works">
