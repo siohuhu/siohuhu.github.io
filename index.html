@@ -115,7 +115,10 @@ body {
   transition: opacity 0.25s;
 }
 .bottom-logo a:hover { opacity: 0.72; }
-.bottom-logo img { height: 56px; width: auto; display: block; }
+.bottom-logo img { height: 40px; width: auto; display: block; }
+
+/* hero-bottom 預設隱藏（mobile 不用）*/
+.hero-bottom { display: none; }
 
 /* 分隔線 */
 .bottom-divider {
@@ -171,46 +174,41 @@ footer {
   .hero-title .t1,
   .hero-title .t2 { font-size: clamp(2.2rem, 3.5vw, 3.6rem); }
 
-  /* PC hero 左下：logo+contact overlay */
+  /* PC：hero-bottom 移出 hero，顯示在 works 上方 */
   .hero-bottom {
-    position: absolute;
-    bottom: 18px; left: 36px;
-    z-index: 20;
+    position: static;
     display: flex;
     align-items: center;
     gap: 14px;
+    width: 100%;
+    max-width: 1000px;
+    padding: 16px 0 0;
   }
-  .hero-bottom .hb-logo img {
-    height: 52px; width: auto; display: block;
-  }
+  .hero-bottom .hb-logo img { height: 52px; width: auto; display: block; }
   .hero-bottom .hb-logo a {
-    display: block; text-decoration: none;
-    transition: opacity 0.25s;
+    display: block; text-decoration: none; transition: opacity 0.25s;
   }
   .hero-bottom .hb-logo a:hover { opacity: 0.72; }
-
   .hero-bottom .hb-divider {
     width: 0.5px; height: 36px;
-    background: rgba(253,252,249,0.30);
+    background: var(--border);
     flex-shrink: 0;
   }
   .hero-bottom .hb-contact .c-label {
     font-family: var(--sans);
     font-size: 0.68rem; font-weight: 300;
     letter-spacing: 0.12em;
-    color: rgba(253,252,249,0.72);
+    color: var(--text);
     margin-bottom: 0.2rem;
   }
   .hero-bottom .hb-contact a {
     font-family: var(--sans);
     font-size: 0.62rem; font-weight: 300;
-    color: rgba(253,252,249,0.55);
+    color: var(--muted);
     text-decoration: none;
     display: block; transition: color 0.25s;
   }
-  .hero-bottom .hb-contact a:hover {
-    color: rgba(253,252,249,0.88);
-  }
+  .hero-bottom .hb-contact a:hover { color: var(--text); }
 
   /* mobile bottom-bar 隱藏 */
   .bottom-bar { display: none; }
@@ -255,20 +253,21 @@ footer {
       <div class="t2">STUDIO</div>
     </div>
 
-    <!-- PC only：左下 logo + contact -->
-    <div class="hero-bottom">
-      <div class="hb-logo">
-        <a href="/" aria-label="Siohuhu Studio">
-          <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
-        </a>
-      </div>
-      <div class="hb-divider"></div>
-      <div class="hb-contact">
-        <p class="c-label">contact</p>
-        <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
-      </div>
-    </div>
   </section>
+
+  <!-- PC：logo + contact，hero 下方 -->
+  <div class="hero-bottom">
+    <div class="hb-logo">
+      <a href="/" aria-label="Siohuhu Studio">
+        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+      </a>
+    </div>
+    <div class="hb-divider"></div>
+    <div class="hb-contact">
+      <p class="c-label">contact</p>
+      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+    </div>
+  </div>
 
   <!-- WORKS -->
   <div class="works">
