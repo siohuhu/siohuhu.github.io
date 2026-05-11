@@ -174,7 +174,7 @@ footer {
   .hero-title .t1,
   .hero-title .t2 { font-size: clamp(2.2rem, 3.5vw, 3.6rem); }
 
-  /* PC：hero-bottom 移出 hero，顯示在 works 上方 */
+  /* PC：hero-bottom 在 works 下方 */
   .hero-bottom {
     position: static;
     display: flex;
@@ -183,6 +183,8 @@ footer {
     width: 100%;
     max-width: 1000px;
     padding: 16px 0 0;
+    border-top: 0.5px solid var(--border);
+    margin-top: 4px;
   }
   .hero-bottom .hb-logo img { height: 52px; width: auto; display: block; }
   .hero-bottom .hb-logo a {
@@ -255,20 +257,6 @@ footer {
 
   </section>
 
-  <!-- PC：logo + contact，hero 下方 -->
-  <div class="hero-bottom">
-    <div class="hb-logo">
-      <a href="/" aria-label="Siohuhu Studio">
-        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
-      </a>
-    </div>
-    <div class="hb-divider"></div>
-    <div class="hb-contact">
-      <p class="c-label">contact</p>
-      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
-    </div>
-  </div>
-
   <!-- WORKS -->
   <div class="works">
     <a class="work-item" href="https://siohuhu.github.io/sea-of-mirrors/" target="_blank" rel="noopener">
@@ -286,6 +274,20 @@ footer {
     </div>
     <div class="bottom-divider"></div>
     <div class="bottom-contact">
+      <p class="c-label">contact</p>
+      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- PC：logo + contact，sea of mirrors 下方 -->
+  <div class="hero-bottom">
+    <div class="hb-logo">
+      <a href="/" aria-label="Siohuhu Studio">
+        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+      </a>
+    </div>
+    <div class="hb-divider"></div>
+    <div class="hb-contact">
       <p class="c-label">contact</p>
       <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
     </div>
