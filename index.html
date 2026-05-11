@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#fdfcf9">
-<meta name="description" content="Siohuhu Studio — independent game & interactive design studio">
 <title>Siohuhu Studio</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,14 +13,14 @@
   --text:   #2a2825;
   --muted:  #9a9590;
   --border: rgba(42,40,37,0.10);
-  --yellow: #c8d44e;
-  --blue:   #5bbccc;
+  /* 蘋方黑細體 */
+  --sans: 'PingFang TC', 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
 }
 
 html, body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: 'Georgia', serif;
   min-height: 100svh;
 }
 
@@ -45,7 +44,7 @@ body {
 }
 .hero-img {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
+  object-fit: cover; object-position: center 20%;
   display: block;
 }
 .hero::after {
@@ -55,12 +54,12 @@ body {
   pointer-events: none;
 }
 
-/* 左下標題 — MOBILE 小字 */
+/* 左下 SIOHUHU STUDIO */
 .hero-title {
   position: absolute;
   bottom: 18px; left: 18px;
   z-index: 20;
-  color: rgba(253,252,249,0.70);
+  color: rgba(253,252,249,0.72);
   font-family: 'Georgia', serif;
   font-weight: 400;
   letter-spacing: 0.18em;
@@ -69,44 +68,10 @@ body {
   pointer-events: none;
 }
 .hero-title .t1,
-.hero-title .t2 { font-size: clamp(1rem, 4.5vw, 1.4rem); }
-
-/* PC logo（hero 左下）— hidden on mobile */
-.hero-logo-pc { display: none; }
-
-/* ══ LOGO BAR（mobile：hero 下方）══ */
-.logo-bar {
-  width: 100%; max-width: 420px;
-  padding: 14px 2px 0;
-  display: flex; align-items: center;
-}
-.logo-bar a, .hero-logo-pc {
-  display: inline-flex; align-items: center; gap: 8px;
-  text-decoration: none;
-  transition: opacity 0.25s;
-}
-.logo-bar a:hover, .hero-logo-pc:hover { opacity: 0.72; }
-
-/* SVG logo 尺寸 */
-.logo-svg { display: block; }
-.logo-bar  .logo-svg { width: 52px; height: 34px; }  /* mobile */
-
-/* Siohuhu Studio 文字（logo 旁） */
-.logo-text {
-  display: flex; flex-direction: column; line-height: 1.15;
-}
-.logo-text .lt1 {
-  font-family: 'Georgia', serif; font-style: italic;
-  font-size: 1rem; letter-spacing: 0.04em; color: #5a5750;
-}
-.logo-text .lt2 {
-  font-family: 'Georgia', serif;
-  font-size: 0.55rem; letter-spacing: 0.20em;
-  text-transform: uppercase; color: #9a9590;
-}
+.hero-title .t2 { font-size: clamp(2rem, 9vw, 2.8rem); }
 
 /* ══ WORKS ══ */
-.works { width: 100%; max-width: 420px; margin-top: 14px; }
+.works { width: 100%; max-width: 420px; margin-top: 16px; }
 
 .work-item {
   display: block; position: relative;
@@ -114,7 +79,7 @@ body {
   border-radius: 12px; margin-bottom: 10px;
 }
 .work-item .work-bg {
-  width: 100%; height: 100px;
+  width: 100%; height: 110px;
   object-fit: cover; object-position: center 40%;
   display: block;
   filter: brightness(0.72) saturate(0.88);
@@ -124,49 +89,72 @@ body {
   filter: brightness(0.58) saturate(0.80);
   transform: scale(1.04);
 }
-
-/* sea of mirrors 字：現在的 2 倍 → ~2.2rem */
 .work-item .work-label {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Georgia', serif; font-weight: 400;
-  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  font-size: clamp(1.7rem, 7vw, 2.2rem);
   letter-spacing: 0.18em;
   color: rgba(253,252,249,0.88);
   text-transform: lowercase;
 }
 
-/* ══ CONTACT ══ */
-.contact {
+/* ══ BOTTOM BAR（mobile：works 下方）══ */
+.bottom-bar {
   width: 100%; max-width: 420px;
-  padding: 1.8rem 0 1.2rem;
-  text-align: center;
-  border-top: 0.5px solid var(--border); margin-top: 4px;
+  display: flex;
+  align-items: center;
+  padding: 1.6rem 0 1.2rem;
+  border-top: 0.5px solid var(--border);
+  margin-top: 4px;
+  gap: 16px;
 }
-.contact .c-label {
-  font-size: 0.78rem; letter-spacing: 0.18em;
-  color: var(--text); margin-bottom: 0.3rem;
+
+.bottom-logo a {
+  display: block; text-decoration: none;
+  transition: opacity 0.25s;
 }
-.contact a {
-  font-size: 0.70rem; letter-spacing: 0.08em;
+.bottom-logo a:hover { opacity: 0.72; }
+.bottom-logo img { height: 56px; width: auto; display: block; }
+
+/* 分隔線 */
+.bottom-divider {
+  width: 0.5px; height: 40px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.bottom-contact {}
+.bottom-contact .c-label {
+  font-family: var(--sans);
+  font-size: 0.72rem; font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--text); margin-bottom: 0.25rem;
+}
+.bottom-contact a {
+  font-family: var(--sans);
+  font-size: 0.65rem; font-weight: 300;
+  letter-spacing: 0.04em;
   color: var(--muted); text-decoration: none;
   display: block; transition: color 0.2s;
 }
-.contact a:hover { color: var(--text); }
+.bottom-contact a:hover { color: var(--text); }
 
 /* ══ FOOTER ══ */
 footer {
   width: 100%; max-width: 420px;
   padding: 0.9rem 0 2.4rem;
   text-align: center;
-  font-size: 0.54rem; letter-spacing: 0.10em;
+  font-family: var(--sans);
+  font-size: 0.52rem; font-weight: 300;
+  letter-spacing: 0.08em;
   color: var(--muted);
   border-top: 0.5px solid var(--border);
 }
 
-/* ══════════════════════════════
+/* ══════════════════
    PC  (≥ 720px)
-══════════════════════════════ */
+══════════════════ */
 @media (min-width: 720px) {
   body { padding: 40px 40px 0; background: #edeae4; }
 
@@ -175,34 +163,57 @@ footer {
     aspect-ratio: 16 / 7; border-radius: 20px;
   }
 
-  /* PC title：左下角，縮小 */
+  /* PC：title 移到中間位置，logo+contact 嵌入 hero 左下 */
   .hero-title {
-    bottom: 20px; left: 36px;
+    bottom: 80px; left: 36px;
     letter-spacing: 0.22em;
   }
   .hero-title .t1,
-  .hero-title .t2 { font-size: clamp(1.1rem, 1.8vw, 1.6rem); }
+  .hero-title .t2 { font-size: clamp(2.2rem, 3.5vw, 3.6rem); }
 
-  /* PC：logo-pc 隱藏（不用了） */
-  .hero-logo-pc { display: none; }
-
-  /* PC logo bar：hero 下方左側，真實圖片 */
-  .logo-bar {
+  /* PC hero 左下：logo+contact overlay */
+  .hero-bottom {
+    position: absolute;
+    bottom: 18px; left: 36px;
+    z-index: 20;
     display: flex;
-    max-width: 1000px;
-    padding: 14px 0 0;
-    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
   }
-  .logo-bar a { display: block; }
-  .logo-bar img {
-    height: 44px; width: auto;
-    display: block;
-    mix-blend-mode: multiply;
+  .hero-bottom .hb-logo img {
+    height: 52px; width: auto; display: block;
   }
-  /* PC：隱藏 SVG logo，顯示真實圖片 */
-  .logo-bar .logo-svg,
-  .logo-bar .logo-text { display: none; }
-  .logo-bar .logo-img { display: block; }
+  .hero-bottom .hb-logo a {
+    display: block; text-decoration: none;
+    transition: opacity 0.25s;
+  }
+  .hero-bottom .hb-logo a:hover { opacity: 0.72; }
+
+  .hero-bottom .hb-divider {
+    width: 0.5px; height: 36px;
+    background: rgba(253,252,249,0.30);
+    flex-shrink: 0;
+  }
+  .hero-bottom .hb-contact .c-label {
+    font-family: var(--sans);
+    font-size: 0.68rem; font-weight: 300;
+    letter-spacing: 0.12em;
+    color: rgba(253,252,249,0.72);
+    margin-bottom: 0.2rem;
+  }
+  .hero-bottom .hb-contact a {
+    font-family: var(--sans);
+    font-size: 0.62rem; font-weight: 300;
+    color: rgba(253,252,249,0.55);
+    text-decoration: none;
+    display: block; transition: color 0.25s;
+  }
+  .hero-bottom .hb-contact a:hover {
+    color: rgba(253,252,249,0.88);
+  }
+
+  /* mobile bottom-bar 隱藏 */
+  .bottom-bar { display: none; }
 
   .works {
     max-width: 1000px;
@@ -213,26 +224,23 @@ footer {
     margin-bottom: 0; border-radius: 14px;
   }
   .work-item .work-bg { height: 150px; }
-  /* PC sea of mirrors 字：與 mobile 一致大小 */
-  .work-item .work-label { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+  .work-item .work-label { font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
 
-  .contact { max-width: 1000px; padding: 2rem 0 1.4rem; }
-  footer { max-width: 1000px; }
+  footer { max-width: 1000px; padding: 1.4rem 0 2rem; }
 }
 
-/* 2K (≥ 1800px) */
+/* 2K */
 @media (min-width: 1800px) {
   body { padding: 56px 60px 0; }
   .hero { max-width: 1500px; aspect-ratio: 16 / 6; }
-  .hero-title { bottom: 96px; left: 56px; }
-  .hero-title .t1, .hero-title .t2 { font-size: clamp(2.2rem, 2.8vw, 3.4rem); }
-  .hero-logo-pc { bottom: 28px; left: 56px; }
-  .hero-logo-pc .logo-svg { width: 68px; height: 44px; }
+  .hero-title { bottom: 100px; left: 56px; }
+  .hero-title .t1, .hero-title .t2 { font-size: clamp(3rem, 3.5vw, 5rem); }
+  .hero-bottom { bottom: 28px; left: 56px; }
+  .hero-bottom .hb-logo img { height: 64px; }
   .works { max-width: 1500px; gap: 20px; }
   .work-item .work-bg { height: 200px; }
-  .work-item .work-label { font-size: clamp(1.6rem, 2.2vw, 2.4rem); }
-  .contact { max-width: 1500px; }
-  footer { max-width: 1500px; font-size: 0.62rem; }
+  .work-item .work-label { font-size: clamp(2rem, 2.5vw, 3rem); }
+  footer { max-width: 1500px; font-size: 0.60rem; }
 }
 </style>
 </head>
@@ -247,47 +255,20 @@ footer {
       <div class="t2">STUDIO</div>
     </div>
 
-    <!-- PC only：logo 左下 -->
-    <a class="hero-logo-pc" href="/" aria-label="Siohuhu Studio">
-      <svg class="logo-svg" viewBox="0 0 80 52" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="26" cy="26" r="24" fill="#c8d44e"/>
-        <circle cx="52" cy="26" r="24" fill="#5bbccc"/>
-        <path d="M19 24 Q22 28.5 25 24" stroke="#2a2825" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="18" cy="21" r="1.2" fill="#2a2825"/>
-        <circle cx="25" cy="21" r="1.2" fill="#2a2825"/>
-        <path d="M45 24 Q48 28.5 51 24" stroke="#2a2825" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="44" cy="21" r="1.2" fill="#2a2825"/>
-        <circle cx="51" cy="21" r="1.2" fill="#2a2825"/>
-      </svg>
-      <div class="logo-text">
-        <span class="lt1">Siohuhu</span>
-        <span class="lt2">Studio</span>
+    <!-- PC only：左下 logo + contact -->
+    <div class="hero-bottom">
+      <div class="hb-logo">
+        <a href="/" aria-label="Siohuhu Studio">
+          <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+        </a>
       </div>
-    </a>
+      <div class="hb-divider"></div>
+      <div class="hb-contact">
+        <p class="c-label">contact</p>
+        <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+      </div>
+    </div>
   </section>
-
-  <!-- MOBILE only：logo bar（SVG）/ PC：真實圖片 -->
-  <div class="logo-bar">
-    <a href="/" aria-label="Siohuhu Studio">
-      <!-- PC 用真實圖片 -->
-      <img class="logo-img" src="siohuhu_logo_02.png" alt="Siohuhu Studio" style="display:none;">
-      <!-- Mobile 用 SVG -->
-      <svg class="logo-svg" viewBox="0 0 80 52" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="26" cy="26" r="24" fill="#c8d44e"/>
-        <circle cx="52" cy="26" r="24" fill="#5bbccc"/>
-        <path d="M19 24 Q22 28.5 25 24" stroke="#2a2825" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="18" cy="21" r="1.2" fill="#2a2825"/>
-        <circle cx="25" cy="21" r="1.2" fill="#2a2825"/>
-        <path d="M45 24 Q48 28.5 51 24" stroke="#2a2825" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="44" cy="21" r="1.2" fill="#2a2825"/>
-        <circle cx="51" cy="21" r="1.2" fill="#2a2825"/>
-      </svg>
-      <div class="logo-text">
-        <span class="lt1">Siohuhu</span>
-        <span class="lt2">Studio</span>
-      </div>
-    </a>
-  </div>
 
   <!-- WORKS -->
   <div class="works">
@@ -295,17 +276,20 @@ footer {
       <img class="work-bg" src="siohuhustudio_home02.png" alt="Sea of Mirrors 鏡之海">
       <span class="work-label">sea of mirrors</span>
     </a>
-    <!--
-    <a class="work-item" href="#" target="_blank" rel="noopener">
-      <img class="work-bg" src="NEXT_COVER.png" alt="next work">
-      <span class="work-label">next work</span>
-    </a>
-    -->
   </div>
 
-  <div class="contact">
-    <p class="c-label">contact</p>
-    <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+  <!-- MOBILE：works 下方 logo + contact -->
+  <div class="bottom-bar">
+    <div class="bottom-logo">
+      <a href="/" aria-label="Siohuhu Studio">
+        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+      </a>
+    </div>
+    <div class="bottom-divider"></div>
+    <div class="bottom-contact">
+      <p class="c-label">contact</p>
+      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+    </div>
   </div>
 
   <footer>All rights reserved 2026 by The Siohuhu.Studio</footer>
