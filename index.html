@@ -13,7 +13,6 @@
   --text:   #2a2825;
   --muted:  #9a9590;
   --border: rgba(42,40,37,0.10);
-  /* 蘋方黑細體 */
   --sans: 'PingFang TC', 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
 }
 
@@ -21,16 +20,14 @@ html, body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Georgia', serif;
-  height: 100svh;
-  overflow: hidden; /* mobile 不捲動 */
+  min-height: 100svh;
 }
 
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 14px 12px;
-  height: 100svh;
+  padding: 16px 14px 24px;
 }
 
 /* ══ HERO ══ */
@@ -38,12 +35,11 @@ body {
   position: relative;
   width: 100%;
   max-width: 420px;
-  flex: 1 1 0;          /* 剩餘空間都給 hero */
-  min-height: 0;        /* flex 子元素必須設這個才能縮 */
+  aspect-ratio: 3 / 4;
   border-radius: 16px;
   overflow: hidden;
   background: #9e9894;
-  flex-shrink: 1;
+  flex-shrink: 0;
 }
 .hero-img {
   width: 100%; height: 100%;
@@ -53,32 +49,28 @@ body {
 .hero::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 35%, rgba(18,16,14,0.62) 100%);
+  background: linear-gradient(to bottom, transparent 35%, rgba(18,16,14,0.65) 100%);
   pointer-events: none;
 }
 
-/* 左下 SIOHUHU STUDIO */
+/* 左下文案 */
 .hero-title {
   position: absolute;
-  bottom: 14px; left: 16px;
+  bottom: 18px; left: 18px;
   z-index: 20;
   color: rgba(253,252,249,0.72);
   font-family: 'Georgia', serif;
   font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  line-height: 1.18;
+  line-height: 1.4;
   pointer-events: none;
+  max-width: 70%;
+  font-size: clamp(0.72rem, 3vw, 0.92rem);
 }
-.hero-title .t1,
-.hero-title .t2 { font-size: clamp(1.4rem, 6vw, 2rem); }
 
 /* ══ WORKS ══ */
-.works {
-  width: 100%; max-width: 420px;
-  margin-top: 10px;
-  flex-shrink: 0;
-}
+.works { width: 100%; max-width: 420px; margin-top: 12px; }
 
 .work-item {
   display: block; position: relative;
@@ -86,7 +78,7 @@ body {
   border-radius: 10px; margin-bottom: 0;
 }
 .work-item .work-bg {
-  width: 100%; height: 80px;
+  width: 100%; height: 88px;
   object-fit: cover; object-position: center 40%;
   display: block;
   filter: brightness(0.72) saturate(0.88);
@@ -106,72 +98,77 @@ body {
   text-transform: lowercase;
 }
 
-/* ══ BOTTOM BAR（mobile：works 下方）══ */
+/* ══ BOTTOM BAR ══ */
 .bottom-bar {
   width: 100%; max-width: 420px;
   display: flex;
   align-items: center;
-  padding: 10px 0 0 12px;
+  padding: 12px 0 0 12px;
   border-top: 0.5px solid var(--border);
-  margin-top: 10px;
+  margin-top: 12px;
   gap: 12px;
   flex-shrink: 0;
 }
-
 .bottom-logo a {
-  display: block; text-decoration: none;
-  transition: opacity 0.25s;
+  display: block; text-decoration: none; transition: opacity 0.25s;
 }
 .bottom-logo a:hover { opacity: 0.72; }
 .bottom-logo img { height: 32px; width: auto; display: block; }
 
-/* hero-bottom 預設隱藏（mobile 不用）*/
-.hero-bottom { display: none; }
-
-/* 分隔線 */
 .bottom-divider {
-  width: 0.5px; height: 40px;
-  background: var(--border);
-  flex-shrink: 0;
+  width: 0.5px; height: 32px;
+  background: var(--border); flex-shrink: 0;
 }
-
-.bottom-contact {}
 .bottom-contact .c-label {
   font-family: var(--sans);
-  font-size: 0.72rem; font-weight: 300;
-  letter-spacing: 0.12em;
-  color: var(--text); margin-bottom: 0.25rem;
+  font-size: 0.68rem; font-weight: 300;
+  letter-spacing: 0.12em; color: var(--text); margin-bottom: 0.2rem;
 }
 .bottom-contact a {
   font-family: var(--sans);
-  font-size: 0.65rem; font-weight: 300;
-  letter-spacing: 0.04em;
-  color: var(--muted); text-decoration: none;
-  display: block; transition: color 0.2s;
+  font-size: 0.62rem; font-weight: 300;
+  letter-spacing: 0.04em; color: var(--muted);
+  text-decoration: none; display: block; transition: color 0.2s;
 }
 .bottom-contact a:hover { color: var(--text); }
 
+/* ══ SOCIAL ══ */
+.social-bar {
+  width: 100%; max-width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 4px 0;
+}
+.social-bar a {
+  display: block; opacity: 0.50;
+  /* 功能鎖住：pointer-events none */
+  pointer-events: none;
+  cursor: default;
+}
+.social-bar img { width: 28px; height: 28px; object-fit: contain; display: block; }
+
 /* ══ FOOTER ══ */
 footer {
-  display: none; /* mobile 一屏，不顯示 footer */
   width: 100%; max-width: 420px;
-  padding: 0.9rem 0 2.4rem;
+  padding: 10px 0 8px;
   text-align: center;
   font-family: var(--sans);
-  font-size: 0.52rem; font-weight: 300;
-  letter-spacing: 0.08em;
-  color: var(--muted);
+  font-size: 0.50rem; font-weight: 300;
+  letter-spacing: 0.08em; color: var(--muted);
   border-top: 0.5px solid var(--border);
+  margin-top: 10px;
 }
+
+/* hero-bottom：PC only */
+.hero-bottom { display: none; }
 
 /* ══════════════════
    PC  (≥ 720px)
 ══════════════════ */
 @media (min-width: 720px) {
-  html, body {
-    height: auto;
-    overflow: auto;
-  }
+  html, body { height: auto; }
   body { padding: 40px 40px 0; background: #edeae4; }
 
   .hero {
@@ -180,81 +177,87 @@ footer {
     flex: none;
   }
 
-  /* PC：title 移到中間位置，logo+contact 嵌入 hero 左下 */
   .hero-title {
-    bottom: 80px; left: 36px;
-    letter-spacing: 0.22em;
+    bottom: 28px; left: 36px;
+    font-size: clamp(0.8rem, 1.4vw, 1.1rem);
+    max-width: 40%;
+    letter-spacing: 0.12em;
   }
-  .hero-title .t1,
-  .hero-title .t2 { font-size: clamp(2.2rem, 3.5vw, 3.6rem); }
 
-  /* PC：hero-bottom 在 works 下方 */
+  /* PC hero-bottom：logo+contact 在 works 下方 */
   .hero-bottom {
-    position: static;
     display: flex;
     align-items: center;
     gap: 14px;
-    width: 100%;
-    max-width: 1000px;
-    padding: 20px 0 16px;
+    width: 100%; max-width: 1000px;
+    padding: 20px 0 0;
     border-top: 0.5px solid var(--border);
     margin-top: 16px;
   }
-  .hero-bottom .hb-logo img { height: 52px; width: auto; display: block; }
   .hero-bottom .hb-logo a {
     display: block; text-decoration: none; transition: opacity 0.25s;
   }
   .hero-bottom .hb-logo a:hover { opacity: 0.72; }
+  .hero-bottom .hb-logo img { height: 52px; width: auto; display: block; }
   .hero-bottom .hb-divider {
     width: 0.5px; height: 36px;
-    background: var(--border);
-    flex-shrink: 0;
+    background: var(--border); flex-shrink: 0;
   }
   .hero-bottom .hb-contact .c-label {
     font-family: var(--sans);
     font-size: 0.68rem; font-weight: 300;
-    letter-spacing: 0.12em;
-    color: var(--text);
-    margin-bottom: 0.2rem;
+    letter-spacing: 0.12em; color: var(--text); margin-bottom: 0.2rem;
   }
   .hero-bottom .hb-contact a {
     font-family: var(--sans);
     font-size: 0.62rem; font-weight: 300;
-    color: var(--muted);
-    text-decoration: none;
+    color: var(--muted); text-decoration: none;
     display: block; transition: color 0.25s;
   }
   .hero-bottom .hb-contact a:hover { color: var(--text); }
 
-  /* mobile bottom-bar 隱藏 */
+  /* PC social：右側對齊 hero-bottom */
+  .hero-bottom .hb-social {
+    margin-left: auto;
+    display: flex; gap: 12px; align-items: center;
+  }
+  .hero-bottom .hb-social a {
+    display: block; opacity: 0.45;
+    pointer-events: none; cursor: default;
+    transition: opacity 0.2s;
+  }
+  .hero-bottom .hb-social img { width: 30px; height: 30px; object-fit: contain; }
+
+  /* mobile bottom-bar / social 隱藏 */
   .bottom-bar { display: none; }
+  .social-bar { display: none; }
 
   .works {
     max-width: 1000px;
     display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap;
   }
-  .work-item {
-    flex: 1; min-width: 260px;
-    margin-bottom: 0; border-radius: 14px;
-  }
+  .work-item { flex: 1; min-width: 260px; border-radius: 14px; }
   .work-item .work-bg { height: 150px; }
   .work-item .work-label { font-size: clamp(1.6rem, 2.8vw, 2.4rem); }
 
-  footer { display: block; max-width: 1000px; padding: 1.4rem 0 2rem; }
+  footer {
+    display: block; max-width: 1000px;
+    padding: 1.2rem 0 2rem; font-size: 0.58rem;
+    margin-top: 0;
+  }
 }
 
 /* 2K */
 @media (min-width: 1800px) {
   body { padding: 56px 60px 0; }
   .hero { max-width: 1500px; aspect-ratio: 16 / 6; }
-  .hero-title { bottom: 100px; left: 56px; }
-  .hero-title .t1, .hero-title .t2 { font-size: clamp(3rem, 3.5vw, 5rem); }
-  .hero-bottom { bottom: 28px; left: 56px; }
+  .hero-title { font-size: clamp(1rem, 1.3vw, 1.4rem); bottom: 36px; left: 56px; }
+  .hero-bottom { max-width: 1500px; }
   .hero-bottom .hb-logo img { height: 64px; }
   .works { max-width: 1500px; gap: 20px; }
   .work-item .work-bg { height: 200px; }
   .work-item .work-label { font-size: clamp(2rem, 2.5vw, 3rem); }
-  footer { max-width: 1500px; font-size: 0.60rem; }
+  footer { max-width: 1500px; font-size: 0.62rem; }
 }
 </style>
 </head>
@@ -263,12 +266,9 @@ footer {
   <!-- HERO -->
   <section class="hero">
     <img class="hero-img" src="siohuhustudio_home.png" alt="Siohuhu Studio">
-
     <div class="hero-title" aria-hidden="true">
-      <div class="t1">SIOHUHU</div>
-      <div class="t2">STUDIO</div>
+      Everything's got<br>a moral, if only you<br>can find it.
     </div>
-
   </section>
 
   <!-- WORKS -->
@@ -279,7 +279,26 @@ footer {
     </a>
   </div>
 
-  <!-- MOBILE：works 下方 logo + contact -->
+  <!-- PC：logo + contact + social -->
+  <div class="hero-bottom">
+    <div class="hb-logo">
+      <a href="/" aria-label="Siohuhu Studio">
+        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+      </a>
+    </div>
+    <div class="hb-divider"></div>
+    <div class="hb-contact">
+      <p class="c-label">contact</p>
+      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+    </div>
+    <div class="hb-social">
+      <a href="#" aria-label="Facebook"><img src="fb.png" alt="Facebook"></a>
+      <a href="#" aria-label="Instagram"><img src="ig.png" alt="Instagram"></a>
+      <a href="#" aria-label="TikTok"><img src="Tik_Tok.png" alt="TikTok"></a>
+    </div>
+  </div>
+
+  <!-- MOBILE：logo + contact -->
   <div class="bottom-bar">
     <div class="bottom-logo">
       <a href="/" aria-label="Siohuhu Studio">
@@ -293,18 +312,11 @@ footer {
     </div>
   </div>
 
-  <!-- PC：logo + contact，sea of mirrors 下方 -->
-  <div class="hero-bottom">
-    <div class="hb-logo">
-      <a href="/" aria-label="Siohuhu Studio">
-        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
-      </a>
-    </div>
-    <div class="hb-divider"></div>
-    <div class="hb-contact">
-      <p class="c-label">contact</p>
-      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
-    </div>
+  <!-- MOBILE social -->
+  <div class="social-bar">
+    <a href="#" aria-label="Facebook"><img src="fb.png" alt="Facebook"></a>
+    <a href="#" aria-label="Instagram"><img src="ig.png" alt="Instagram"></a>
+    <a href="#" aria-label="TikTok"><img src="Tik_Tok.png" alt="TikTok"></a>
   </div>
 
   <footer>All rights reserved 2026 by The Siohuhu.Studio</footer>
