@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fdfcf9">
+<title>Siohuhu Studio</title>
+<style>
+@font-face {
+  font-family: 'Monument Valley 12';
+  src: url('./monument-valley-12-font/MonumentValley12-X55o.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:     #fdfcf9;
+  --text:   #2a2825;
+  --muted:  #9a9590;
+  --border: rgba(42,40,37,0.10);
+  --sans: 'PingFang TC', 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Georgia', serif;
+  min-height: 100svh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 14px 24px;
+}
+
+/* ══ HERO ══ */
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #9e9894;
+  flex-shrink: 0;
+}
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 20%;
+  display: block;
+}
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 35%, rgba(18,16,14,0.65) 100%);
+  pointer-events: none;
+}
+
+/* 左下文案 */
+.hero-title {
+  position: absolute;
+  bottom: 18px; left: 18px;
+  z-index: 20;
+  color: rgba(255,255,255,0.95);
+  font-family: 'Monument Valley 12', serif;
+  font-weight: 400;
+  letter-spacing: 0.075em;
+  line-height: 1.72;
+  pointer-events: none;
+  max-width: 65%;
+  font-size: clamp(0.9rem, 3.6vw, 1.12rem);
+}
+
+/* ══ WORKS ══ */
+.works { width: 100%; max-width: 420px; margin-top: 12px; }
+
+.work-item {
+  display: block; position: relative;
+  overflow: hidden; text-decoration: none;
+  border-radius: 10px; margin-bottom: 0;
+}
+.work-item .work-bg {
+  width: 100%; height: 88px;
+  object-fit: cover; object-position: center 40%;
+  display: block;
+  filter: brightness(0.72) saturate(0.88);
+  transition: filter 0.4s, transform 0.4s;
+}
+.work-item:hover .work-bg {
+  filter: brightness(0.58) saturate(0.80);
+  transform: scale(1.04);
+}
+.work-item .work-label {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Monument Valley 12', serif; font-weight: 400;
+  font-size: clamp(1.62rem, 6.3vw, 2.07rem);
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.87);
+  text-transform: none;
+}
+
+/* ══ BOTTOM BAR ══ */
+.bottom-bar {
+  width: 100%; max-width: 420px;
+  display: flex;
+  align-items: center;
+  padding: 12px 0 0 12px;
+  border-top: 0.5px solid var(--border);
+  margin-top: 12px;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.bottom-logo a {
+  display: block; text-decoration: none; transition: opacity 0.25s;
+}
+.bottom-logo a:hover { opacity: 0.72; }
+.bottom-logo img { height: 32px; width: auto; display: block; }
+
+.bottom-divider {
+  width: 0.5px; height: 32px;
+  background: var(--border); flex-shrink: 0;
+}
+.bottom-contact .c-label {
+  font-family: var(--sans);
+  font-size: 0.68rem; font-weight: 300;
+  letter-spacing: 0.12em; color: var(--text); margin-bottom: 0.2rem;
+}
+.bottom-contact a {
+  font-family: var(--sans);
+  font-size: 0.62rem; font-weight: 300;
+  letter-spacing: 0.04em; color: var(--muted);
+  text-decoration: none; display: block; transition: color 0.2s;
+}
+.bottom-contact a:hover { color: var(--text); }
+
+/* ══ SOCIAL ══ */
+.social-bar {
+  width: 100%; max-width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 4px 0;
+}
+  .social-bar .social-icon {
+    display: block; opacity: 0.50;
+  }
+  .social-bar img { width: 28px; height: 28px; object-fit: contain; display: block; }
+
+/* ══ FOOTER ══ */
+footer {
+  width: 100%; max-width: 420px;
+  padding: 10px 0 8px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 0.50rem; font-weight: 300;
+  letter-spacing: 0.08em; color: var(--muted);
+  border-top: 0.5px solid var(--border);
+  margin-top: 10px;
+}
+
+/* hero-bottom：PC only */
+.hero-bottom { display: none; }
+
+/* ══════════════════
+   PC  (≥ 720px)
+══════════════════ */
+@media (min-width: 720px) {
+  html, body { height: auto; }
+  body { padding: 40px 40px 0; background: #edeae4; }
+
+  .hero {
+    max-width: 1000px; width: 100%;
+    aspect-ratio: 16 / 7; border-radius: 20px;
+    flex: none;
+  }
+
+  .hero-title {
+    bottom: 28px; left: 36px;
+    font-size: clamp(1.2rem, 2.1vw, 1.64rem);
+    max-width: 38%;
+    letter-spacing: 0.085em;
+    font-family: 'Monument Valley 12', serif;
+    font-weight: 400;
+    line-height: 1.82;
+  }
+
+  /* PC hero-bottom：logo+contact 在 works 下方 */
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%; max-width: 1000px;
+    padding: 20px 0 0;
+    border-top: 0.5px solid var(--border);
+    margin-top: 16px;
+  }
+  .hero-bottom .hb-logo a {
+    display: block; text-decoration: none; transition: opacity 0.25s;
+  }
+  .hero-bottom .hb-logo a:hover { opacity: 0.72; }
+  .hero-bottom .hb-logo img { height: 52px; width: auto; display: block; }
+  .hero-bottom .hb-divider {
+    width: 0.5px; height: 36px;
+    background: var(--border); flex-shrink: 0;
+  }
+  .hero-bottom .hb-contact .c-label {
+    font-family: var(--sans);
+    font-size: 0.68rem; font-weight: 300;
+    letter-spacing: 0.12em; color: var(--text); margin-bottom: 0.2rem;
+  }
+  .hero-bottom .hb-contact a {
+    font-family: var(--sans);
+    font-size: 0.62rem; font-weight: 300;
+    color: var(--muted); text-decoration: none;
+    display: block; transition: color 0.25s;
+  }
+  .hero-bottom .hb-contact a:hover { color: var(--text); }
+
+  /* PC social：右側對齊 hero-bottom */
+  .hero-bottom .hb-social {
+    margin-left: auto;
+    display: flex; gap: 12px; align-items: center;
+  }
+  .hero-bottom .hb-social .social-icon {
+    display: block; opacity: 0.45;
+    transition: opacity 0.2s;
+  }
+  .hero-bottom .hb-social img { width: 30px; height: 30px; object-fit: contain; }
+
+  /* mobile bottom-bar / social 隱藏 */
+  .bottom-bar { display: none; }
+  .social-bar { display: none; }
+
+  .works {
+    max-width: 1000px;
+    display: flex; gap: 14px; margin-top: 20px; flex-wrap: wrap;
+  }
+  .work-item { flex: 1; min-width: 260px; border-radius: 14px; }
+  .work-item .work-bg { height: 150px; }
+  .work-item .work-label { font-size: clamp(2.03rem, 3.45vw, 3.06rem); }
+
+  footer {
+    display: block; max-width: 1000px;
+    padding: 1.2rem 0 2rem; font-size: 0.58rem;
+    margin-top: 0;
+  }
+}
+
+/* 2K */
+@media (min-width: 1800px) {
+  body { padding: 56px 60px 0; }
+  .hero { max-width: 1500px; aspect-ratio: 16 / 6; }
+  .hero-title { font-size: clamp(1.24rem, 1.56vw, 1.72rem); bottom: 36px; left: 56px; }
+  .hero-bottom { max-width: 1500px; }
+  .hero-bottom .hb-logo img { height: 64px; }
+  .works { max-width: 1500px; gap: 20px; }
+  .work-item .work-bg { height: 200px; }
+  .work-item .work-label { font-size: clamp(2.55rem, 3.18vw, 3.83rem); }
+  footer { max-width: 1500px; font-size: 0.62rem; }
+}
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-img" src="siohuhustudio_home.png" alt="Siohuhu Studio">
+    <div class="hero-title" aria-hidden="true">
+      Everything's got<br>a moral, if only you<br>can find it.
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <div class="works">
+    <a class="work-item" href="https://siohuhu.github.io/sea-of-mirrors/" target="_blank" rel="noopener">
+      <img class="work-bg" src="siohuhustudio_home02.png" alt="Sea of Mirrors 鏡之海">
+      <span class="work-label">Sea of Mirrors</span>
+    </a>
+  </div>
+
+  <!-- PC：logo + contact + social -->
+  <div class="hero-bottom">
+    <div class="hb-logo">
+      <a href="./" aria-label="Siohuhu Studio">
+        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+      </a>
+    </div>
+    <div class="hb-divider"></div>
+    <div class="hb-contact">
+      <p class="c-label">contact</p>
+      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+    </div>
+    <div class="hb-social">
+      <span class="social-icon" aria-hidden="true"><img src="fb.png" alt=""></span>
+      <span class="social-icon" aria-hidden="true"><img src="ig.png" alt=""></span>
+      <span class="social-icon" aria-hidden="true"><img src="Tik_Tok.png" alt=""></span>
+    </div>
+  </div>
+
+  <!-- MOBILE：logo + contact -->
+  <div class="bottom-bar">
+    <div class="bottom-logo">
+      <a href="./" aria-label="Siohuhu Studio">
+        <img src="siohuhu_logo_02.png" alt="Siohuhu Studio">
+      </a>
+    </div>
+    <div class="bottom-divider"></div>
+    <div class="bottom-contact">
+      <p class="c-label">contact</p>
+      <a href="mailto:siohuhu.studio@gmail.com">siohuhu.studio@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- MOBILE social -->
+  <div class="social-bar">
+    <span class="social-icon" aria-hidden="true"><img src="fb.png" alt=""></span>
+    <span class="social-icon" aria-hidden="true"><img src="ig.png" alt=""></span>
+    <span class="social-icon" aria-hidden="true"><img src="Tik_Tok.png" alt=""></span>
+  </div>
+
+  <footer>All rights reserved 2026 by The Siohuhu.Studio</footer>
+
+</body>
+</html>
