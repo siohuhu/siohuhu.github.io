@@ -105,10 +105,30 @@ body {
   pointer-events: none;
   will-change: transform;
 }
+
+@media (max-width: 719px) {
+  .hero::before {
+    inset: -10%;
+    opacity: .75;
+    background:
+      radial-gradient(
+        ellipse at 34% 42%,
+        rgba(255,255,255,.16),
+        transparent 48%
+      ),
+      radial-gradient(
+        ellipse at 70% 34%,
+        rgba(255,255,255,.09),
+        transparent 52%
+      );
+    filter: blur(2px);
+    animation-duration: 16s;
+  }
+}
 @keyframes mistMove{
-  0%{transform:translateX(-80px); }
-  50%{transform:translateX(80px); }
-  100%{ transform:translateX(-80px); }
+  0%{transform:translate3d(-18px, 0, 0) scale(1); opacity:.62; }
+  50%{transform:translate3d(18px, -4px, 0) scale(1.015); opacity:.82; }
+  100%{ transform:translate3d(-18px, 0, 0) scale(1); opacity:.62; }
 }
 @keyframes heroZoom {
   0%, 100% { transform: scale(1); }
