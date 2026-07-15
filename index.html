@@ -34,6 +34,7 @@
   --muted:  #9a9590;
   --border: rgba(42,40,37,0.10);
   --sans: 'PingFang TC', 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
+  --cjk-sans: 'PingFang TC', 'PingFang HK', 'Heiti TC', 'Hiragino Sans GB', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
   --panel: rgba(255,255,255,0.62);
 }
 
@@ -76,6 +77,11 @@ body {
   transition: background 0.2s, border-color 0.2s, opacity 0.2s;
 }
 
+body[data-lang="zh"] .lang-switch button {
+  font-family: var(--cjk-sans);
+  font-weight: 400;
+}
+
 .lang-switch button[aria-pressed="true"] {
   background: var(--text);
   border-color: var(--text);
@@ -94,14 +100,6 @@ body {
   overflow: hidden;
   background: #9e9894;
   flex-shrink: 0;
-}
-.hero-link {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  display: block;
-  text-decoration: none;
-  color: inherit;
 }
 .hero-img {
   width: 100%; height: 100%;
@@ -190,45 +188,21 @@ body {
   font-size: 1.3rem;
 }
 
-.hero-enter {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  z-index: 21;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.26);
-  background: rgba(255,255,255,0.10);
-  color: rgba(255,255,255,0.96);
-  backdrop-filter: blur(6px);
-  transition: background 0.2s, transform 0.2s, border-color 0.2s, opacity 0.2s;
-  opacity: 0.72;
-  pointer-events: none;
-}
-
-.hero-enter:hover {
-  background: rgba(255,255,255,0.20);
-  border-color: rgba(255,255,255,0.38);
-  transform: translateY(-1px);
-}
-
-.hero-enter::before {
-  content: '';
-  width: 9px;
-  height: 9px;
-  border-top: 1.5px solid currentColor;
-  border-right: 1.5px solid currentColor;
-  transform: translateX(-1px) rotate(45deg);
+body[data-lang="zh"] .hero-title {
+  font-family: var(--cjk-sans);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  font-size: 1.22rem;
 }
 
 @media (max-width: 390px) {
   .hero-title {
     font-size: 1.22rem;
     max-width: 68%;
+  }
+
+  body[data-lang="zh"] .hero-title {
+    font-size: 1.14rem;
   }
 }
 
@@ -286,6 +260,13 @@ body {
   font-family: var(--sans);
   font-size: 0.68rem; font-weight: 300;
   letter-spacing: 0.12em; color: var(--text); margin-bottom: 0.2rem;
+}
+
+body[data-lang="zh"] .bottom-contact .c-label,
+body[data-lang="zh"] .hero-bottom .hb-contact .c-label,
+body[data-lang="zh"] footer {
+  font-family: var(--cjk-sans);
+  font-weight: 400;
 }
 .bottom-contact a {
   font-family: var(--sans);
@@ -345,6 +326,11 @@ footer {
     font-family: 'Sea of Mirrors 1.2', serif;
     font-weight: 600;
     line-height: 1.82;
+  }
+
+  body[data-lang="zh"] .hero-title {
+    font-size: clamp(1.28rem, 2.22vw, 1.78rem);
+    line-height: 1.74;
   }
 
   /* PC hero-bottom：logo+contact 在 works 下方 */
@@ -428,6 +414,10 @@ footer {
   .work-item .work-label { font-size: clamp(2.19rem, 2.74vw, 3.29rem); }
   footer { max-width: 1500px; font-size: 0.62rem; }
   .lang-switch { max-width: 1500px; }
+
+  body[data-lang="zh"] .hero-title {
+    font-size: clamp(1.34rem, 1.66vw, 1.82rem);
+  }
 }
 </style>
 </head>
@@ -440,12 +430,10 @@ footer {
 
   <!-- HERO -->
   <section class="hero">
-    <a class="hero-link" href="./idioms/" aria-label="Enter idioms"></a>
     <img class="hero-img" src="siohuhustudio_home.png" alt="Siohuhu Studio">
     <div class="hero-title" data-i18n="hero-copy" aria-hidden="true">
       Every journey <br>leaves a memory.<br>Every memory<br>awaits another traveler.
     </div>
-    <span class="hero-enter" aria-hidden="true"></span>
   </section>
 
   <!-- WORKS -->
@@ -503,17 +491,17 @@ footer {
       const STORAGE_KEY = 'siohuhu-lang';
       const STRINGS = {
         zh: {
-          heroCopy: '每段旅程<br>都會留下記憶。<br>每段記憶<br>都在等下一位旅人。',
-          workLabel: 'Sea of Mirrors',
-          contactLabel: '聯絡',
-          footerCopy: '2026 The Siohuhu.Studio 版權所有',
+          'hero-copy': '每段旅程<br>都會留下記憶。<br>每段記憶<br>都在等下一位旅人。',
+          'work-label': 'Sea of Mirrors',
+          'contact-label': '聯絡',
+          'footer-copy': '2026 The Siohuhu.Studio 版權所有',
           title: 'Siohuhu Studio',
         },
         en: {
-          heroCopy: 'Every journey<br>leaves a memory.<br>Every memory<br>awaits another traveler.',
-          workLabel: 'Sea of Mirrors',
-          contactLabel: 'Contact',
-          footerCopy: 'All rights reserved 2026 by The Siohuhu.Studio',
+          'hero-copy': 'Every journey<br>leaves a memory.<br>Every memory<br>awaits another traveler.',
+          'work-label': 'Sea of Mirrors',
+          'contact-label': 'Contact',
+          'footer-copy': 'All rights reserved 2026 by The Siohuhu.Studio',
           title: 'Siohuhu Studio',
         }
       };

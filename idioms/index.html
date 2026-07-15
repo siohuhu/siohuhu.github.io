@@ -26,6 +26,7 @@
   --border: rgba(42,40,37,0.10);
   --panel: rgba(255,255,255,0.66);
   --sans: 'PingFang TC', 'Apple SD Gothic Neo', 'Noto Sans TC', sans-serif;
+  --cjk-sans: 'PingFang TC', 'PingFang HK', 'Heiti TC', 'Hiragino Sans GB', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
 }
 
 html, body {
@@ -67,6 +68,11 @@ body {
   font-size: 0.62rem;
   letter-spacing: 0.08em;
   cursor: pointer;
+}
+
+body[data-lang="zh"] .lang-switch button {
+  font-family: var(--cjk-sans);
+  font-weight: 400;
 }
 
 .lang-switch button[aria-pressed="true"] {
@@ -122,6 +128,21 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.74);
+}
+
+body[data-lang="zh"] .eyebrow,
+body[data-lang="zh"] .title,
+body[data-lang="zh"] .subtitle,
+body[data-lang="zh"] .actions a.primary,
+body[data-lang="zh"] .meta,
+body[data-lang="zh"] .meta a {
+  font-family: var(--cjk-sans);
+}
+
+body[data-lang="zh"] .title,
+body[data-lang="zh"] .subtitle,
+body[data-lang="zh"] .meta {
+  font-weight: 400;
 }
 
 .title {
@@ -208,6 +229,10 @@ body {
   .title {
     font-size: clamp(3rem, 6vw, 5.5rem);
   }
+
+  body[data-lang="zh"] .title {
+    font-size: clamp(2.82rem, 5.7vw, 5.1rem);
+  }
 }
 </style>
 </head>
@@ -239,23 +264,23 @@ body {
 
 <script>
   (() => {
-    const STORAGE_KEY = 'siohuhu-lang';
-    const STRINGS = {
-      zh: {
-        eyebrow: '慣用語',
-        title: '慣用語',
-        subtitle: '這個頁面正在整理中，之後會放入正式的慣用語內容。',
-        back: '回首頁',
-        project: 'Sea of Mirrors',
-        metaLeft: 'Siohuhu Studio',
+      const STORAGE_KEY = 'siohuhu-lang';
+      const STRINGS = {
+        zh: {
+        'eyebrow': '慣用語',
+        'title': '慣用語',
+        'subtitle': '這個頁面正在整理中，之後會放入正式的慣用語內容。',
+        'back': '回首頁',
+        'project': 'Sea of Mirrors',
+        'meta-left': 'Siohuhu Studio',
       },
       en: {
-        eyebrow: 'Idioms',
-        title: 'Idioms',
-        subtitle: 'This page is being prepared and will hold the full idiom content.',
-        back: 'Home',
-        project: 'Sea of Mirrors',
-        metaLeft: 'Siohuhu Studio',
+        'eyebrow': 'Idioms',
+        'title': 'Idioms',
+        'subtitle': 'This page is being prepared and will hold the full idiom content.',
+        'back': 'Home',
+        'project': 'Sea of Mirrors',
+        'meta-left': 'Siohuhu Studio',
       }
     };
 
@@ -269,6 +294,7 @@ body {
     const setLanguage = (lang) => {
       const strings = STRINGS[lang] || STRINGS.en;
       document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+      document.body.dataset.lang = lang;
       localStorage.setItem(STORAGE_KEY, lang);
 
       document.querySelectorAll('[data-i18n]').forEach((node) => {
