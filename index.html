@@ -227,12 +227,46 @@ body[data-lang="zh"] .hero-title {
 }
 .work-item .work-label {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-family: 'Sea of Mirrors 1.2',serif; font-weight: 500;
-  font-size: clamp(1.4rem, 5.41vw, 1.78rem);
-  letter-spacing: 0.36em;
+  font-size: clamp(1.9rem, 5.91vw, 2.28rem);
   color: rgba(255,255,255,0.87);
   text-transform: none;
+}
+
+.work-item .work-label-en {
+  display: block;
+  letter-spacing: 0.36em;
+  line-height: 1;
+}
+
+.work-item .work-label-zh {
+  display: none;
+  margin-top: 1.46rem;
+  font-family: var(--cjk-sans);
+  font-weight: 400;
+  letter-spacing: 0.96em;
+  font-size: 0.56em;
+  line-height: 1;
+}
+
+body[data-lang="zh"] .work-item .work-label {
+  font-family: var(--cjk-sans);
+  font-weight: 400;
+  font-size: clamp(1.98rem, 5.5vw, 2.38rem);
+}
+
+body[data-lang="zh"] .work-item .work-label-en {
+  font-family: 'Sea of Mirrors 1.2', serif;
+  font-weight: 500;
+  letter-spacing: 0.36em;
+}
+
+body[data-lang="zh"] .work-item .work-label-zh {
+  display: block;
 }
 
 /* ══ BOTTOM BAR ══ */
@@ -440,7 +474,10 @@ footer {
   <div class="works">
     <a class="work-item" href="https://siohuhu.github.io/sea-of-mirrors/" target="_blank" rel="noopener">
       <img class="work-bg" src="siohuhustudio_home02.png" alt="Sea of Mirrors 鏡之海">
-      <span class="work-label" data-i18n="work-label">Sea of Mirrors</span>
+      <span class="work-label" aria-label="Sea of Mirrors">
+        <span class="work-label-en" data-i18n="work-label-en">Sea of Mirrors</span>
+        <span class="work-label-zh" data-i18n="work-label-zh">鏡之海</span>
+      </span>
     </a>
   </div>
 
@@ -492,14 +529,16 @@ footer {
       const STRINGS = {
         zh: {
           'hero-copy': '每段旅程<br>都會留下記憶。<br>每段記憶<br>都在等下一位旅人。',
-          'work-label': 'Sea of Mirrors',
+          'work-label-en': 'Sea of Mirrors',
+          'work-label-zh': '鏡之海',
           'contact-label': '聯絡',
           'footer-copy': '2026 The Siohuhu.Studio 版權所有',
           title: 'Siohuhu Studio',
         },
         en: {
           'hero-copy': 'Every journey<br>leaves a memory.<br>Every memory<br>awaits another traveler.',
-          'work-label': 'Sea of Mirrors',
+          'work-label-en': 'Sea of Mirrors',
+          'work-label-zh': '',
           'contact-label': 'Contact',
           'footer-copy': 'All rights reserved 2026 by The Siohuhu.Studio',
           title: 'Siohuhu Studio',
